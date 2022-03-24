@@ -2,14 +2,12 @@ class Solution {
     public int sumOfBeauties(int[] nums) {
         int[] maxes = new int[nums.length];
         int[] mins = new int[nums.length];
-        
+        int n = nums.length;
         maxes[0] = nums[0];
+        mins[nums.length-1] = nums[nums.length-1];
         for(int i=1;i<nums.length;i++){
             maxes[i] = Math.max(maxes[i-1], nums[i]);
-        }
-        mins[nums.length-1] = nums[nums.length-1];
-        for(int i=nums.length-2;i>=0;i--){
-            mins[i] = Math.min(mins[i+1], nums[i]);
+            mins[n-1-i]=Math.min(mins[n-i], nums[n-1-i]);
         }
         
         int count = 0;
