@@ -11,7 +11,6 @@ class Solution {
         for(int i=2;i<coordinates.length;i++){ 
             x1 = coordinates[i][0];
             y1 = coordinates[i][1];
-            System.out.println(m*x1 + b);
             if(horizontal){
                 if(y1==firstY) continue;
                 else return false;
