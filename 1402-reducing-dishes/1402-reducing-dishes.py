@@ -2,16 +2,18 @@ class Solution:
     def maxSatisfaction(self, satisfaction: List[int]) -> int:
         n = len(satisfaction)
         satisfaction.sort()
-        results = [0]*n
+        maxx = -10000
         for i in range(n-1,-1,-1):
             j = 1
+            result = 0
             for k in range(i,n):
-                results[i] += j * satisfaction[k]
+                result += j * satisfaction[k]
                 j += 1 
+            maxx = max(maxx, result)
         # print(results)
-        ans = max(results)
-        if ans < 0: return 0
-        return ans
+        
+        if maxx < 0: return 0
+        return maxx
     
     
          
