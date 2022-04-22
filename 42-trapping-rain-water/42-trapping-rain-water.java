@@ -2,7 +2,6 @@ class Solution {
     public int trap(int[] height) {
         int max = 0;
         ArrayDeque<Integer> stack = new ArrayDeque<>();
-        System.out.println(height.length);
         for(int i=0;i<height.length;i++){
             while(!stack.isEmpty() && height[stack.peek()] < height[i]){
                 int top = stack.pop();
