@@ -8,12 +8,10 @@ class Solution:
         
         usedWords = set()
         for word in words:
-            if self.isSuffix(suffix, word[::-1]) and word not in usedWords:
-                countMergedWords += len(word)
-                continue
-            if word not in usedWords:
-                num_hashes += 1
-            usedWords.add(word)
+            if not self.isSuffix(suffix, word[::-1]):
+                if word not in usedWords:
+                    num_hashes += 1
+                    usedWords.add(word)
         
         return num_hashes + sum(map(len,usedWords)) 
         
