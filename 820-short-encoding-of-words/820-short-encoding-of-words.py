@@ -4,7 +4,7 @@ class Solution:
         num_hashs = 0
         countMergedWords = 0
         words = sorted(words, key= lambda x:len(x))
-        print(words)
+        
         for j in range(len(words)-1,-1,-1):
             word = words[j]
             if self.search(suffix, word):
