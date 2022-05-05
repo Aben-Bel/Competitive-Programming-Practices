@@ -1,35 +1,33 @@
 class Solution:
     def minimumLengthEncoding(self, words: List[str]) -> int:
         suffix = {}
-        num_hashs = 0
+        num_hashes = 0
         countMergedWords = 0
-        words = sorted(words, key= lambda x:len(x))
+        for word in words:
+            self.addWord(suffix, word[::-1])
         
-        for j in range(len(words)-1,-1,-1):
-            word = words[j]
-            if self.search(suffix, word):
+        usedWords = set()
+        for word in words:
+            if self.isSuffix(suffix, word[::-1]) and word not in usedWords:
                 countMergedWords += len(word)
-                continue 
-                
-            num_hashs += 1
-            for i in range(len(word)):
-                self.addWord(suffix, i, word)
+                continue
+            if word not in usedWords:
+                num_hashes += 1
+            usedWords.add(word)
         
-        return num_hashs + sum(map(len,words)) - countMergedWords
+        return num_hashes + sum(map(len,usedWords)) 
         
-    def addWord(self, suffix, i, w):
-        word = w[i:]
+    def addWord(self, suffix, word):
         for letter in word:
             if letter not in suffix:
                 suffix[letter] = {}
             suffix = suffix[letter]
         suffix["*"] = word
         
-    def search(self, suffix, word):
+    def isSuffix(self, suffix, word):
         for letter in word:
             if letter not in suffix:
                 return False
             suffix = suffix[letter]
-        return "*" in suffix
-            
+        return len(suffix) > 1
         
