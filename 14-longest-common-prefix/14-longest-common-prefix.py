@@ -7,6 +7,8 @@ class Solution:
         commonPrefix = self.getCommon(strs[0], strs[1])
         for i in range(2, len(strs)):
             commonPrefix = self.getCommon(strs[i], commonPrefix)
+            if commonPrefix == "":
+                return commonPrefix
         
         return commonPrefix
             
