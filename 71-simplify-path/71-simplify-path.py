@@ -8,9 +8,7 @@ class Solution:
             if folder == "..":
                 if stack:
                     stack.pop()
-            elif folder == ".":
-                continue
-            elif folder:
+            elif folder and folder != ".":
                 stack.append(folder)
             
         return "/" + "/".join(stack)
