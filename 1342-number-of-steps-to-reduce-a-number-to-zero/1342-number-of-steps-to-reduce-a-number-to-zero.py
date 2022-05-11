@@ -5,7 +5,7 @@ class Solution:
             if (num & 1) == 0:
                 num  >>= 1
             else:
-                num = num - 1
+                num = num & (~1)
             count += 1
         return count
         
