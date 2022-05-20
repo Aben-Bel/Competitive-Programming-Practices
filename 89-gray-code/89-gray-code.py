@@ -11,7 +11,7 @@ class Solution:
         if len(result) == 2**n:
             return True
         
-        for i in range(n):
+        for i in range(n-1, -1, -1):
             nextVal = cur ^ (1<<i)
             
             if nextVal not in visited:
