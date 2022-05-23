@@ -1,10 +1,7 @@
 class Solution:
-    def reverseBits(self, x: int) -> int:
-        i = 31
+    def reverseBits(self, n: int) -> int:
         res = 0
-        while i>=0:
-            val = ((x>>i)&1)
-            if val == 1:
-                res = res | 1<<(31-i)
-            i -= 1
+        for i in range(32):
+            if (n>>(31-i)) & 1:
+                res |= (1<<i)
         return res
