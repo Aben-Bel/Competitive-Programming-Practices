@@ -1,10 +1,12 @@
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        set1 = set(nums1)
-        result = set()
-        
+        hashmap1 = {}
+        for num in nums1:
+            hashmap1[num] = 1
+            
+        result = {}
         for num in nums2:
-            if num in set1:
-                result.add(num)
+            if num in hashmap1:
+                result[num] = 1
                 
-        return list(result)
+        return list(result.keys())
