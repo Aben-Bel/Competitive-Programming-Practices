@@ -10,6 +10,7 @@ class Solution:
         while cur:
             li.append(cur)
             cur = cur.next
+            
         left-=1
         right-=1
         while left<right:
@@ -19,7 +20,6 @@ class Solution:
         
         for i in range(len(li)):
             if i+1<len(li):
-                print(i)
                 li[i].next = li[i+1]
         li[-1].next = None
         
