@@ -2,17 +2,14 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
         result = []
-        def generate(picked, path):
-            if len(path) == len(nums):
-                result.append(path[:])
-                return
+        def generate(first):
+            if first >= len(nums):
+                result.append(nums[:]) 
             
-            for i in range(len(nums)):
-                if i not in picked:
-                    picked.add(i)
-                    path.append(nums[i])
-                    generate(picked, path)
-                    picked.remove(i)
-                    path.pop()
-        generate(set(), [])
+            for i in range(first, len(nums)):
+                nums[i],nums[first] = nums[first], nums[i]
+                generate(first+1)
+                nums[i],nums[first] = nums[first], nums[i]
+        
+        generate(0)
         return result
