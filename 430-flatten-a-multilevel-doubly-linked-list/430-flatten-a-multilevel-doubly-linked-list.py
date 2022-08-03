@@ -7,16 +7,10 @@ class Node:
         self.next = next
         self.child = child
 """
-# [1,null]
-#  |
-# [2,null]
-#  |
-# [3,null]
 
 class Solution:
     def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        if not head:
-            return head
+        if not head: return head
         
         cur = head
         while cur:
@@ -32,7 +26,9 @@ class Solution:
                 if temp:
                     temp.prev = nodes
                 cur.child = None
-            cur = cur.next
+                cur = temp
+            else:
+                cur = cur.next
             
         return head
         
