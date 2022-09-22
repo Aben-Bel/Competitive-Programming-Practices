@@ -1,35 +1,16 @@
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
-        n = len(nums)
-        containsOne = False
-        for i in range(n):
-            if nums[i] == 1:
-                containsOne = True
-            if nums[i] > n:
-                nums[i] = 1
-            if nums[i] <= 0:
-                nums[i] = 1
+        def cyclicSort():
+            i = 0
+            while i<len(nums):
+                correct = nums[i]-1
+                if 0 < nums[i] < len(nums) and nums[correct] != nums[i]:
+                    nums[correct], nums[i] = nums[i],nums[correct]
+                else:
+                    i+=1
         
-        if not containsOne:
-            return 1
-        
-        for i in range(n):
-            val = abs(nums[i])
-            if val == n:
-                nums[0] = - abs(nums[0])
-            else:
-                nums[val] = - abs(nums[val])
-        
-        for i in range(1, n):
-            if nums[i] > 0:
-                return i
-        
-        if nums[0] > 0:
-            return n
-        
-        return n + 1
-        
-        
-        
-        
-        
+        cyclicSort()
+        for i, val in enumerate(nums):
+            if i+1 != val:
+                return i+1
+        return len(nums)+1
