@@ -1,9 +1,12 @@
 class Solution:
     def runningSum(self, nums: List[int]) -> List[int]:
-        outPut=[nums[0]]
-        sums=nums[0]
-        for i in range(1,len(nums)):
-            sums=sums+nums[i]
-            outPut.append(sums)
+        output = [0]*len(nums)
+        for i in range(len(nums)):
+            sums = 0
+            for j in range(0,i+1):
+                sums = sums + nums[j]
+            output[i] = sums
             
-        return outPut
+            
+            
+        return output
