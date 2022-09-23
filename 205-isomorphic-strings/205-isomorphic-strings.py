@@ -1,15 +1,21 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        charMapStoT = {}
-        charMapTtoS = {}
+        if len(s) != len(t):
+            return False
         
-        for i in range(len(t)):
-            if s[i] in charMapStoT:
-                if charMapStoT[s[i]] != t[i]: 
-                    return False
-            else:
-                if t[i] in charMapTtoS and charMapTtoS[t[i]] != s[i]:
-                    return False
-                charMapStoT[s[i]] = t[i]
-                charMapTtoS[t[i]] = s[i]
+        
+        match = defaultdict(chr)
+        matched = defaultdict(chr)
+        for i in range(len(s)):
+            if s[i] in match and match[s[i]] != t[i]:
+                return False
+            
+            if t[i] in matched and matched[t[i]] != s[i]:
+                return False
+            
+            match[s[i]] = t[i]
+            matched[t[i]] = s[i]
+            
+        
         return True
+        
