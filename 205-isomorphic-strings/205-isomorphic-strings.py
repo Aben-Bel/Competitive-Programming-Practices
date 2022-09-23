@@ -7,10 +7,8 @@ class Solution:
         match = defaultdict(chr)
         matched = defaultdict(chr)
         for i in range(len(s)):
-            if s[i] in match and match[s[i]] != t[i]:
-                return False
-            
-            if t[i] in matched and matched[t[i]] != s[i]:
+            if ((s[i] in match and match[s[i]] != t[i]) or 
+                (t[i] in matched and matched[t[i]] != s[i])):
                 return False
             
             match[s[i]] = t[i]
