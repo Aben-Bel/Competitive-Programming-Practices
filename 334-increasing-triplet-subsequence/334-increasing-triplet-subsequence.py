@@ -9,13 +9,12 @@ class Solution:
             best = -1
             while left <= right:
                 mid = (left + right)//2
-                if triplets[mid]  > val:
+                if triplets[mid]  >= val:
                     best = mid
                     right = mid - 1
                 else:
                     left = mid + 1
-            if best!=-1 and val != triplets[best-1]: return best
-            return -1
+            return best
         
         triplets = [nums[0]]
         for i in range(1, len(nums)):
@@ -25,6 +24,6 @@ class Solution:
                     return True
             else:
                 j = getIndex(nums[i], triplets)
-                if j != -1: triplets[j] = nums[i]
+                triplets[j] = nums[i]
         return False
                 
