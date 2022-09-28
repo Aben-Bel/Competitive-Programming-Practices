@@ -20,7 +20,7 @@ class Solution:
                 i, j = nei
                 if grid1[i][j] == 0 and grid2[i][j] == 1:
                     res = False
-                elif grid2[i][j] == 1 and grid1[i][j] == 1:
+                elif grid2[i][j] == 1:
                     res &= dfs((i,j))
             return res
         count = 0
