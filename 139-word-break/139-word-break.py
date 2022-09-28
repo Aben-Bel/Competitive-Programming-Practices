@@ -6,8 +6,12 @@ class Solution:
         dp[N] = True
         
         for i in range(N - 1, -1, -1):
-            for x in range(i, N):
-                dp[i] |= s[i: x + 1] in _dict and dp[x + 1]
+            for word in _dict:
+                n = len(word)
+                if i + n <= N:
+                    dp[i] |= s[i: i + n] in _dict and dp[i + n]
+            # for x in range(i, N):
+            #     dp[i] |= s[i: x + 1] in _dict and dp[x + 1]
         return dp[0]
         
         
