@@ -5,15 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.presum = 0
     def bstToGst(self, root: TreeNode) -> TreeNode:
-        if not root: 
-            return 
+        cum = 0
+        def dfs(root):
+            nonlocal cum
+            if not root:
+                return
+            
+            
+            dfs(root.right)
+            cum += root.val
+            root.val = cum
+            dfs(root.left)
         
-        self.bstToGst(root.right)
-        self.presum += root.val
-        root.val = self.presum
-        self.bstToGst(root.left)
-        
+        dfs(root)
         return root
