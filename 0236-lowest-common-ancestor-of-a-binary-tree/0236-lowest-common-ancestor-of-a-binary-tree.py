@@ -7,25 +7,32 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        self.ans = None
-        def dfs(root,p,q):
-            if not root:
-                return False
-
-            left = dfs(root.left,p,q) 
-            right = dfs(root.right,p,q)
-
-            if left and right:
-                self.ans = root
-            elif root == p and (left or right):
-                self.ans = root
-            elif root == q and (left or right):
-                self.ans = root
-            elif root == p or root == q:
-                return True
-            else:
-                return left or right
+        stack = [root] 
+        parent = {root:root}
+        while stack:
+            cur = stack.pop()
+            if cur.left:
+                parent[cur.left] = cur
+                stack.append(cur.left)
+            if cur.right:
+                parent[cur.right] = cur
+                stack.append(cur.right)
+        
+        ancestor = set()
+        parentP = parent[p]
+        parentQ = parent[q]
+        while parentP not in ancestor and parentP != parent[parentP]:
+            if parentP == q:
+                return q
+            ancestor.add(parentP)
+            parentP = parent[parentP]
+        
+        while parentQ not in ancestor and parentQ != parent[parentQ]:
+            if parentQ == p:
+                return p
+            ancestor.add(parentQ)
+            parentQ = parent[parentQ]
+        
+        return parentQ
+                
             
-            return True
-        dfs(root,p,q)
-        return self.ans
