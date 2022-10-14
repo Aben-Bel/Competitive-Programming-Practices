@@ -7,24 +7,20 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        stack = [root] 
-        parent = {root:root}
-        while stack:
-            cur = stack.pop()
-            if cur.left:
-                parent[cur.left] = cur
-                stack.append(cur.left)
-            if cur.right:
-                parent[cur.right] = cur
-                stack.append(cur.right)
         
-        ancestor = set()
-        while p not in ancestor:
-            ancestor.add(p)
-            p = parent[p]
+        while root:
+            if (root.val > p.val and root.val < q.val) or \
+                (root.val < p.val and root.val > q.val):
+                return root
+            elif root == p or root==q:
+                return root
+            else:
+                val = max(p.val, q.val)
+                if val > root.val:
+                    root = root.right
+                else:
+                    root = root.left
         
-        while q not in ancestor:
-            ancestor.add(q)
-            q = parent[q]
+        return root
         
-        return q
+        
