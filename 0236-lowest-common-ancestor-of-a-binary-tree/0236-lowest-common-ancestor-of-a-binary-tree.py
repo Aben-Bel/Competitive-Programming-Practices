@@ -19,20 +19,14 @@ class Solution:
                 stack.append(cur.right)
         
         ancestor = set()
-        parentP = parent[p]
-        parentQ = parent[q]
-        while parentP not in ancestor and parentP != parent[parentP]:
-            if parentP == q:
-                return q
-            ancestor.add(parentP)
-            parentP = parent[parentP]
+        while p not in ancestor:
+            ancestor.add(p)
+            p = parent[p]
         
-        while parentQ not in ancestor and parentQ != parent[parentQ]:
-            if parentQ == p:
-                return p
-            ancestor.add(parentQ)
-            parentQ = parent[parentQ]
+        while q not in ancestor:
+            ancestor.add(q)
+            q = parent[q]
         
-        return parentQ
+        return q
                 
             
