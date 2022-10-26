@@ -9,8 +9,9 @@ class Solution:
         step = 0
         while k > 0:# 1
             if k - fib[i] >= 0:
-                k = k-fib[i] # 0
-                step+=1 # 1
+                step+= (k//fib[i]) # 1
+                # k  -=  (k//fib[i])*fib[i]# 0
+                k %= fib[i]
             else:
                 i-=1
 
