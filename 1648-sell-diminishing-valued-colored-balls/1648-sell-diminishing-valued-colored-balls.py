@@ -7,7 +7,7 @@ class Solution:
         left = 0
         cur = inventory[0]
         profit = 0
-        for right in range(1,len(inventory)):
+        for right in range(len(inventory)):
             if cur != inventory[right]:
                 width = (right - left)
                 if width*(cur-inventory[right]) < orders:
