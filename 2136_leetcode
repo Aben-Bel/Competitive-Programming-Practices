@@ -1,0 +1,18 @@
+class Solution:
+    def earliestFullBloom(self, plantTime: List[int], growTime: List[int]) -> int:
+        together = []
+        for i in range(len(plantTime)):
+            together.append((plantTime[i], growTime[i]))
+        
+        together.sort(key=lambda k:k[1], reverse=True)
+        
+        time = 0
+        elapsed = 0
+        for i in range(len(together)):
+            p1, g1 = together[i]
+            time += p1
+            elapsed = max(elapsed, time + g1)
+
+        
+        return elapsed
+
