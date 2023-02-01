@@ -1,0 +1,28 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        length = k
+        left = 0
+        white = 0
+        for right in range(len(blocks)):
+            if blocks[right] == "W":
+                white += 1
+
+            while right - left + 1 > k:
+                if blocks[left] == "W":
+                    white -= 1
+
+                left += 1
+            if right - left + 1 == k:
+                length = min(length, white)
+        
+        return length
+
+            
+
+                
+
+
+                               
+                    
+
+ 
