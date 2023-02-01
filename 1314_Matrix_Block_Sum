@@ -1,0 +1,35 @@
+class Solution:
+    def matrixBlockSum(self, mat: List[List[int]], k: int) -> List[List[int]]:
+        prefix = [[0]*len(mat[0]) for _ in range(len(mat))]
+
+        for i in range(len(mat)):
+            for j in range(len(mat[i])):
+                prefix[i][j] = mat[i][j]
+                if i != 0:
+                    prefix[i][j] += prefix[i-1][j]
+                if j != 0:
+                    prefix[i][j] += prefix[i][j-1]
+                if i != 0 and j != 0:
+                    prefix[i][j] -= prefix[i-1][j-1]
+                
+        ans = [[0]*len(mat[0]) for _ in range(len(mat))]
+        for i in range(len(ans)):
+            for j in range(len(ans[i])):
+                leftBound = min(0, j-k)
+                rightBound = min(len(mat[i])-1, k+j+1)
+                upBound = min(i-k, 0)
+                bottomBound = min(i+k, len(mat)-1)
+                
+                ans[i][j] = prefix[bottomBound][rightBound]
+                if upBound != 0:
+                    ans[i][j] -= prefix[upBound - 1][rightBound]
+                    
+                if leftBound != 0:
+                    ans[i][j] -= prefix[bottomBound][leftBound - 1]
+
+                if upBound != 0 and leftBound != 0:
+                    ans[i][j] += prefix[upBound-1][leftBound - 1]
+                
+
+
+        return ans
