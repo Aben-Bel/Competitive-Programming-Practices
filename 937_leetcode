@@ -1,0 +1,23 @@
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        digits = []
+        letters = []
+        for i in range(len(logs)):
+            if logs[i][-1].isdigit():
+                digits.append(logs[i])
+            else:
+                letters.append(logs[i])
+        
+        def cmp(val):
+            for i in range(len(val)):
+                if val[i] == " ":
+                    return (val[i+1:], val[:i+1])
+
+
+        letters.sort(key=cmp)
+        for digit in digits:
+            letters.append(digit)
+        
+        return letters
+
+        
