@@ -1,0 +1,13 @@
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        nums.sort()
+        subtract = 0
+        operations = 0
+        for i in range(len(nums)):
+            if nums[i] == 0 or nums[i] - subtract == 0:
+                continue
+            
+            operations += 1
+            subtract += (nums[i] - subtract)
+        
+        return operations
