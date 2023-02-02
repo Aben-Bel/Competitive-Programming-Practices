@@ -1,0 +1,19 @@
+class Solution:
+    def numberOfWays(self, s: str) -> int:
+        oneOnRight = sum(list(map(int, list(s))))
+        zeroOnRight = len(s) - oneOnRight
+
+        oneOnLeft = 0
+        zeroOnLeft = 0
+        count = 0
+        for i in range(len(s)):
+            if s[i] == "1":
+                oneOnRight -= 1
+                count += (zeroOnLeft*zeroOnRight)
+                oneOnLeft += 1
+            else:
+                zeroOnRight -= 1
+                count += (oneOnLeft*oneOnRight)
+                zeroOnLeft += 1
+        
+        return count
