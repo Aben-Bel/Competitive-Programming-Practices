@@ -1,0 +1,18 @@
+class Solution:
+
+    def __init__(self, w: List[int]):
+        s = sum(w)
+        self.elements = []
+        for i in range(len(w)):
+            ratio = w[i]/s
+            freq = ceil(ratio*(len(w)*10))
+            for j in range(freq):
+                self.elements.append(i)
+
+    def pickIndex(self) -> int:
+        return self.elements[randint(0,len(self.elements)-1)]
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(w)
+# param_1 = obj.pickIndex()
